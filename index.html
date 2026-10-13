@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bigset Workflow — Find Funded Leads in One Sentence</title>
+  <meta name="description" content="A step-by-step interactive workflow for building a live dataset of freshly funded startups with Bigset by TinyFish — an open-source multi-agent system." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="logo-fish">🐟</span>
+        <span class="logo-text">Bigset</span>
+        <span class="logo-badge">by TinyFish</span>
+      </div>
+      <div class="nav-links">
+        <a href="#why" class="nav-link">Why</a>
+        <a href="#workflow" class="nav-link">Workflow</a>
+        <a href="#prompts" class="nav-link">Prompts</a>
+        <a href="https://github.com/tinyfish-io/bigset" target="_blank" class="nav-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Star on GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="hero-bg.jpg" alt="" class="hero-img" />
+      <div class="hero-overlay"></div>
+      <!-- Animated floating particles -->
+      <canvas id="particleCanvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Open-source · Self-hosted · Multi-agent
+      </div>
+      <h1 class="hero-title">
+        Find funded leads<br />
+        <span class="gradient-text">in one sentence</span>
+      </h1>
+      <p class="hero-subtitle">
+        Bigset turns a plain-English description into a live, self-refreshing dataset —
+        powered by a swarm of AI agents crawling the real web in parallel.
+      </p>
+      <div class="hero-actions">
+        <a href="#workflow" class="btn-primary" id="heroStartBtn">
+          <span>See the workflow</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+        <a href="https://bit.ly/4dEkP04" target="_blank" class="btn-secondary">Get API key →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">1</span>
+          <span class="stat-label">sentence input</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">live data rows</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">0</span>
+          <span class="stat-label">scrapers needed</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ── WHY SECTION ── -->
+  <section class="why-section" id="why">
+    <div class="container">
+      <div class="section-label">Why this works</div>
+      <h2 class="section-title">Funded companies have two things at once</h2>
+      <div class="why-grid">
+        <div class="why-card" data-animate>
+          <div class="why-icon">💰</div>
+          <h3>Budget</h3>
+          <p>They just raised — they have money to spend and problems they're actively solving. That makes them the best leads if you sell.</p>
+        </div>
+        <div class="why-card" data-animate>
+          <div class="why-icon">🚀</div>
+          <h3>Momentum</h3>
+          <p>They're about to hire engineers — often before the job posting goes live. Apply before the crowd even knows.</p>
+        </div>
+        <div class="why-card" data-animate>
+          <div class="why-icon">📡</div>
+          <h3>Market Signal</h3>
+          <p>What's getting funded is a real-time signal of where the market is moving. Use it to decide what to build or learn.</p>
+        </div>
+      </div>
+      <div class="why-callout" data-animate>
+        <div class="callout-icon">⚡</div>
+        <p>The hard part was always <strong>finding them fast enough</strong>.<br />This workflow finds them <em>the day the news drops.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REQUIREMENTS SECTION ── -->
+  <section class="requirements-section" id="requirements">
+    <div class="container">
+      <div class="section-label">What you need</div>
+      <h2 class="section-title">Three things, you own all of them</h2>
+      <div class="req-grid">
+        <div class="req-item" data-animate>
+          <div class="req-num">01</div>
+          <div class="req-icon">⚙️</div>
+          <div class="req-body">
+            <h3>Bigset repo</h3>
+            <p>Running on your own machine. Full codebase is open source (AGPL-3.0).</p>
+            <a href="https://github.com/tinyfish-io/bigset" target="_blank" class="req-link">github.com/tinyfish-io/bigset →</a>
+          </div>
+        </div>
+        <div class="req-item" data-animate>
+          <div class="req-num">02</div>
+          <div class="req-icon">🤖</div>
+          <div class="req-body">
+            <h3>OpenRouter key</h3>
+            <p>For the LLM that powers schema inference and agent orchestration.</p>
+            <a href="https://openrouter.ai" target="_blank" class="req-link">openrouter.ai →</a>
+          </div>
+        </div>
+        <div class="req-item" data-animate>
+          <div class="req-num">03</div>
+          <div class="req-icon">🐟</div>
+          <div class="req-body">
+            <h3>TinyFish key</h3>
+            <p>For live web access — this is what lets agents pull real data off real pages.</p>
+            <a href="https://bit.ly/4dEkP04" target="_blank" class="req-link">Get your key →</a>
+          </div>
+        </div>
+      </div>
+      <div class="req-note" data-animate>
+        🔒 You bring your own keys and run it yourself — you own the whole pipeline.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORKFLOW STEPS ── -->
+  <section class="workflow-section" id="workflow">
+    <div class="container">
+      <div class="section-label">The workflow</div>
+      <h2 class="section-title">Three steps from prompt to pipeline</h2>
+
+      <!-- STEP 1 -->
+      <div class="workflow-step" id="step1" data-animate>
+        <div class="step-connector"></div>
+        <div class="step-header">
+          <div class="step-badge">Step 1</div>
+          <h3 class="step-title">Type one sentence</h3>
+        </div>
+        <div class="step-body">
+          <div class="step-text">
+            <p>Open Bigset and describe the dataset in plain English. No scrapers, no selectors, no config files. That sentence is the entire input.</p>
+          </div>
+          <div class="step-demo">
+            <div class="terminal-window">
+              <div class="terminal-bar">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+                <span class="t-title">bigset</span>
+              </div>
+              <div class="terminal-body">
+                <div class="terminal-prompt">
+                  <span class="t-user">bigset</span>
+                  <span class="t-separator">›</span>
+                  <span class="t-label">describe your dataset:</span>
+                </div>
+                <div class="typewriter-wrapper">
+                  <div class="typewriter" id="typewriterText"></div>
+                  <span class="cursor-blink">|</span>
+                </div>
+                <div class="terminal-output hidden" id="terminalOutput">
+                  <div class="t-line success">✓ Schema inferred: 6 columns detected</div>
+                  <div class="t-line info">  → company_name (string, primary key)</div>
+                  <div class="t-line info">  → description (string)</div>
+                  <div class="t-line info">  → funding_stage (string)</div>
+                  <div class="t-line info">  → location (string)</div>
+                  <div class="t-line info">  → funding_amount (string)</div>
+                  <div class="t-line info">  → careers_url (url)</div>
+                  <div class="t-line success">✓ Launching agent swarm...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="workflow-step" id="step2" data-animate>
+        <div class="step-connector"></div>
+        <div class="step-header">
+          <div class="step-badge">Step 2</div>
+          <h3 class="step-title">Agents build it from the live web</h3>
+        </div>
+        <div class="step-body step-body-reversed">
+          <div class="step-text">
+            <p>Bigset infers the schema automatically — columns, types, primary key. Then it sends a swarm of agents onto the live web.</p>
+            <ul class="feature-list">
+              <li>
+                <span class="feature-icon">🎯</span>
+                <div><strong>Orchestrator agent</strong> does broad discovery and finds the companies</div>
+              </li>
+              <li>
+                <span class="feature-icon">⚡</span>
+                <div><strong>Sub-agents fan out in parallel</strong>, each scoped to a single company</div>
+              </li>
+              <li>
+                <span class="feature-icon">🔗</span>
+                <div>Every cell is <strong>traceable back to its source</strong> — no hallucinations</div>
+              </li>
+              <li>
+                <span class="feature-icon">🔄</span>
+                <div>Rows are <strong>deduplicated</strong> on a primary key</div>
+              </li>
+            </ul>
+          </div>
+          <div class="step-demo">
+            <div class="agent-viz" id="agentViz">
+              <div class="agent-orchestrator" id="agentOrch">
+                <div class="agent-node orch-node" id="orchNode">
+                  <span>🎯</span>
+                  <label>Orchestrator</label>
+                </div>
+              </div>
+              <div class="agent-connections" id="agentConns">
+                <!-- JS-generated lines -->
+              </div>
+              <div class="agent-sub-grid" id="subGrid">
+                <div class="sub-agent" data-company="Stripe" data-funding="Series B">
+                  <div class="agent-node sub-node">
+                    <span>🤖</span>
+                  </div>
+                  <div class="sub-data">
+                    <div class="sub-company">Stripe</div>
+                    <div class="sub-stage">Series B · $50M</div>
+                  </div>
+                  <div class="sub-status">✓</div>
+                </div>
+                <div class="sub-agent" data-company="Vercel" data-funding="Series C">
+                  <div class="agent-node sub-node">
+                    <span>🤖</span>
+                  </div>
+                  <div class="sub-data">
+                    <div class="sub-company">Vercel</div>
+                    <div class="sub-stage">Series C · $30M</div>
+                  </div>
+                  <div class="sub-status">✓</div>
+                </div>
+                <div class="sub-agent" data-company="Linear" data-funding="Seed">
+                  <div class="agent-node sub-node">
+                    <span>🤖</span>
+                  </div>
+                  <div class="sub-data">
+                    <div class="sub-company">Linear</div>
+                    <div class="sub-stage">Seed · $4M</div>
+                  </div>
+                  <div class="sub-status">✓</div>
+                </div>
+                <div class="sub-agent" data-company="Cursor" data-funding="Series A">
+                  <div class="agent-node sub-node">
+                    <span>🤖</span>
+                  </div>
+                  <div class="sub-data">
+                    <div class="sub-company">Cursor</div>
+                    <div class="sub-stage">Series A · $20M</div>
+                  </div>
+                  <div class="sub-status">✓</div>
+                </div>
+                <div class="sub-agent" data-company="Descript" data-funding="Series B">
+                  <div class="agent-node sub-node">
+                    <span>🤖</span>
+                  </div>
+                  <div class="sub-data">
+                    <div class="sub-company">Descript</div>
+                    <div class="sub-stage">Series B · $12M</div>
+                  </div>
+                  <div class="sub-status pending" id="agentPending">...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="workflow-step" id="step3" data-animate>
+        <div class="step-header">
+          <div class="step-badge">Step 3</div>
+          <h3 class="step-title">Export and set it to refresh</h3>
+        </div>
+        <div class="step-body">
+          <div class="step-text">
+            <p>Export the dataset to CSV or XLSX. Then set a refresh cadence — agents re-run on schedule and pull the newest funded companies automatically.</p>
+            <p class="step-highlight">You open your sheet in the morning and the freshest leads are already sitting there, before anyone else has them.</p>
+          </div>
+          <div class="step-demo">
+            <div class="export-panel">
+              <div class="export-header">Export Dataset</div>
+              <div class="export-formats">
+                <button class="format-btn active" id="csvBtn" onclick="selectFormat('csv', this)">
+                  <span class="format-icon">📄</span>
+                  <span>CSV</span>
+                </button>
+                <button class="format-btn" id="xlsxBtn" onclick="selectFormat('xlsx', this)">
+                  <span class="format-icon">📊</span>
+                  <span>XLSX</span>
+                </button>
+              </div>
+
+              <div class="refresh-section">
+                <div class="refresh-label">Auto-refresh cadence</div>
+                <div class="cadence-grid">
+                  <button class="cadence-btn" onclick="selectCadence(this)">30 min</button>
+                  <button class="cadence-btn" onclick="selectCadence(this)">6 hours</button>
+                  <button class="cadence-btn active" onclick="selectCadence(this)">Daily</button>
+                  <button class="cadence-btn" onclick="selectCadence(this)">Weekly</button>
+                </div>
+              </div>
+
+              <div class="preview-table-wrap">
+                <div class="preview-label">Live preview</div>
+                <div class="preview-table">
+                  <div class="preview-head">
+                    <span>Company</span>
+                    <span>Stage</span>
+                    <span>Location</span>
+                    <span>Amount</span>
+                    <span>Careers</span>
+                  </div>
+                  <div class="preview-row row-new">
+                    <span>🟢 Cursor AI</span>
+                    <span class="badge-a">Series A</span>
+                    <span>SF, CA</span>
+                    <span>$20M</span>
+                    <span class="link-cell">↗</span>
+                  </div>
+                  <div class="preview-row row-new" style="animation-delay: 0.3s">
+                    <span>🟢 Linear</span>
+                    <span class="badge-s">Seed</span>
+                    <span>Remote</span>
+                    <span>$4M</span>
+                    <span class="link-cell">↗</span>
+                  </div>
+                  <div class="preview-row row-new" style="animation-delay: 0.6s">
+                    <span>🟢 Descript</span>
+                    <span class="badge-b">Series B</span>
+                    <span>SF, CA</span>
+                    <span>$12M</span>
+                    <span class="link-cell">↗</span>
+                  </div>
+                  <div class="preview-row row-new" style="animation-delay: 0.9s">
+                    <span>🟢 Vercel</span>
+                    <span class="badge-c">Series C</span>
+                    <span>Remote</span>
+                    <span>$30M</span>
+                    <span class="link-cell">↗</span>
+                  </div>
+                </div>
+              </div>
+
+              <button class="export-btn" id="exportBtn" onclick="triggerExport()">
+                <span id="exportBtnText">⬇ Export leads_funded.csv</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROMPTS SECTION ── -->
+  <section class="prompts-section" id="prompts">
+    <div class="container">
+      <div class="section-label">Prompt library</div>
+      <h2 class="section-title">Change the sentence, change the outcome</h2>
+      <p class="section-sub">Same engine. Any dataset you can describe. Click a card to copy the prompt.</p>
+      <div class="prompts-grid">
+        <div class="prompt-card" data-prompt="Startups that raised funding in the last 30 days, with what they do, funding stage, location, and careers page" onclick="copyPrompt(this)">
+          <div class="prompt-goal">🎯 Find leads / clients</div>
+          <div class="prompt-text">"Startups that raised funding in the last 30 days, with what they do, funding stage, location, and careers page"</div>
+          <div class="prompt-copy-hint">Click to copy</div>
+          <div class="prompt-copied-msg">Copied! ✓</div>
+        </div>
+        <div class="prompt-card" data-prompt="YC companies currently hiring engineers, with funding stage, location, and number of open roles" onclick="copyPrompt(this)">
+          <div class="prompt-goal">💼 Apply before jobs are posted</div>
+          <div class="prompt-text">"YC companies currently hiring engineers, with funding stage, location, and number of open roles"</div>
+          <div class="prompt-copy-hint">Click to copy</div>
+          <div class="prompt-copied-msg">Copied! ✓</div>
+        </div>
+        <div class="prompt-card" data-prompt="Popular B2B SaaS tools that offer a free tier, with category, free-tier summary, and pricing page URL" onclick="copyPrompt(this)">
+          <div class="prompt-goal">🔍 Spot market gaps</div>
+          <div class="prompt-text">"Popular B2B SaaS tools that offer a free tier, with category, free-tier summary, and pricing page URL"</div>
+          <div class="prompt-copy-hint">Click to copy</div>
+          <div class="prompt-copied-msg">Copied! ✓</div>
+        </div>
+        <div class="prompt-card" data-prompt="AI startups hiring engineers right now, with the specific skills and stack listed in each role" onclick="copyPrompt(this)">
+          <div class="prompt-goal">📚 Decide what to learn next</div>
+          <div class="prompt-text">"AI startups hiring engineers right now, with the specific skills and stack listed in each role"</div>
+          <div class="prompt-copy-hint">Click to copy</div>
+          <div class="prompt-copied-msg">Copied! ✓</div>
+        </div>
+      </div>
+
+      <!-- Try your own prompt -->
+      <div class="try-own" data-animate>
+        <div class="try-own-label">Try your own →</div>
+        <div class="try-own-input-wrap">
+          <input type="text" id="customPromptInput" class="try-own-input" placeholder="Describe your dataset in one sentence..." />
+          <button class="try-own-btn" onclick="addCustomPrompt()">Generate schema</button>
+        </div>
+        <div class="schema-preview hidden" id="schemaPreview">
+          <div class="schema-header">
+            <span class="schema-title">✓ Schema inferred</span>
+            <span class="schema-sub">Auto-detected columns:</span>
+          </div>
+          <div class="schema-cols" id="schemaCols"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA SECTION ── -->
+  <section class="cta-section" id="cta">
+    <div class="cta-bg">
+      <img src="hero-bg.jpg" alt="" class="hero-img" />
+      <div class="cta-overlay"></div>
+    </div>
+    <div class="container cta-content">
+      <h2 class="cta-title">
+        Funded startups are leads.<br />
+        <span class="gradient-text">What's getting funded is your next idea.</span>
+      </h2>
+      <p class="cta-sub">What they're hiring for is your learning roadmap.</p>
+      <div class="cta-actions">
+        <a href="https://github.com/tinyfish-io/bigset" target="_blank" class="btn-primary cta-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          Star &amp; Clone the Repo
+        </a>
+        <a href="https://bit.ly/4dEkP04" target="_blank" class="btn-secondary cta-btn-sec">Grab your TinyFish API key →</a>
+      </div>
+      <div class="cta-note">
+        Run it on your own infra · Bring your own keys · Own the pipeline
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <span class="logo-fish">🐟</span>
+        <span>Bigset by TinyFish</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/tinyfish-io/bigset" target="_blank">GitHub (AGPL-3.0)</a>
+        <a href="https://bit.ly/4dEkP04" target="_blank">Get API Key</a>
+      </div>
+      <div class="footer-note">Open source · Self-hosted · Your keys, your data</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Prompt copied to clipboard ✓</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
